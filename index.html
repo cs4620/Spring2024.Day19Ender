@@ -62,10 +62,9 @@
       // Has 4 vetices, notably they are in 2D
       // Using a triangle strip to specify the two triangles
       const positions = [
-        1.0, 1.0,
-        -1.0, 1.0,
-        1.0, -1.0,
-        -1.0, -1.0];
+        1.0, 1.0,0,
+        -1.0, 1.0,0,
+        1.0, -1.0,0,];
 
       // Create a memory slot for the vertices
       const positionBuffer = gl.createBuffer();
@@ -79,7 +78,7 @@
       //Data we are going to bind to the shaders
       //There is a variable we need to bind, it is called aVertexPosition
       let vertexPosition = gl.getAttribLocation(shaderProgram, "aVertexPosition")
-      gl.vertexAttribPointer(vertexPosition, 2, gl.FLOAT, false, 0, 0);
+      gl.vertexAttribPointer(vertexPosition, 3, gl.FLOAT, false, 0, 0);
 
       //Setup our matrices
       //First is the projection matrix
