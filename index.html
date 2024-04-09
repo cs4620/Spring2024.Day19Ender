@@ -37,6 +37,7 @@
 
     //Get the 3d context of the element.
     const gl = document.querySelector("#glcanvas").getContext("webgl");
+    
 
     let shaderProgram;
 
@@ -87,6 +88,7 @@
       const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
       const projectionMatrix = mat4.create();
       mat4.perspective(projectionMatrix, fieldOfView, aspect, .1, 100.0);
+      //console.log(projectionMatrix)
 
       //Create the model view matrix
       const modelViewMatrix = mat4.create();
