@@ -60,8 +60,6 @@
     }
 
     function render() {
-      // Has 4 vetices, notably they are in 2D
-      // Using a triangle strip to specify the two triangles
       const positions = [
         1.0, 1.0,0,
         -1.0, 1.0,0,
@@ -94,6 +92,10 @@
       const modelViewMatrix = mat4.create();
       mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, -5]);
 
+      // Rotate the model view matrix about the Z axis
+      mat4.rotateZ(modelViewMatrix, modelViewMatrix, .1)
+
+
       gl.useProgram(shaderProgram);
 
       /**
@@ -123,14 +125,14 @@
       gl.clearDepth(1.0);
 
       //Our draw 
-      const indeces = [0, 1, 2, 1, 2, 3];
+      const indeces = [0, 1, 2];
       //Create our vertex lists
       const indexBuffer = gl.createBuffer();
       gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
       gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indeces), gl.STATIC_DRAW)
-      //gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      
       gl.enable(gl.CULL_FACE);
-      gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0)
+      gl.drawElements(gl.TRIANGLES, 3, gl.UNSIGNED_SHORT, 0)
       requestAnimationFrame(render)
     }
 
