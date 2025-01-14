@@ -17,9 +17,6 @@
   <script src="./fragmentShader.js"></script>
   <script>
 
-
-    
-
     //We nede to make room for our shaders
     //We need to compile the shaders
     function loadShader(gl, type, source) {
@@ -37,11 +34,11 @@
 
     //Get the 3d context of the element.
     const gl = document.querySelector("#glcanvas").getContext("webgl");
-    
+
 
     let shaderProgram;
 
-    function start(){
+    function start() {
       //Allocate memory for a shader on the GPU
       shaderProgram = gl.createProgram();
 
@@ -61,9 +58,9 @@
 
     function render() {
       const positions = [
-        1.0, 1.0,0,
-        -1.0, 1.0,0,
-        1.0, -1.0,0,];
+        1.0, 1.0, 0,
+        -1.0, 1.0, 0,
+        1.0, -1.0, 0,];
 
       // Create a memory slot for the vertices
       const positionBuffer = gl.createBuffer();
@@ -98,10 +95,6 @@
 
       gl.useProgram(shaderProgram);
 
-      /**
-       * Done with part 3 - Vertices and Matrices
-       */
-
       //Attach the per-frame information
       gl.enableVertexAttribArray(gl.getAttribLocation(shaderProgram, "aVertexPosition"));
       gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uProjectionMatrix"), false, projectionMatrix);
@@ -130,14 +123,13 @@
       const indexBuffer = gl.createBuffer();
       gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
       gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indeces), gl.STATIC_DRAW)
-      
+
       gl.enable(gl.CULL_FACE);
       gl.drawElements(gl.TRIANGLES, 3, gl.UNSIGNED_SHORT, 0)
       requestAnimationFrame(render)
     }
 
     requestAnimationFrame(start)
-
 
   </script>
 </body>
